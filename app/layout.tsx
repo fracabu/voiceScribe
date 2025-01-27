@@ -1,5 +1,3 @@
-// app/layout.tsx
-
 import './globals.css';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from "@/components/theme-provider";
@@ -23,15 +21,15 @@ export default function RootLayout({
 
   return (
     <html lang="it" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
-          <div className="min-h-screen flex flex-col">
-            <header className="sticky top-0 bg-background/95 backdrop-blur-sm border-b z-50">
+          <div className="min-h-screen flex flex-col relative">
+            <header className="sticky top-0 bg-background/95 backdrop-blur-sm border-b z-40">
               <div className="container mx-auto px-4 h-16 flex items-center justify-between">
                 <Link href="/" className="flex items-center space-x-2">
                   <Wand2 className="h-6 w-6 text-primary" />
@@ -44,9 +42,8 @@ export default function RootLayout({
               </div>
             </header>
 
-            <main className="flex-1">
+            <main className="flex-1" suppressHydrationWarning>
               {children}
-              <CookieConsent />
             </main>
 
             <footer className="border-t mt-auto">
@@ -54,7 +51,7 @@ export default function RootLayout({
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                   <nav className="flex gap-4">
                     {navigationLinks.map(({ href, label }) => (
-                      <Link 
+                      <Link
                         key={href}
                         href={href}
                         className="text-sm text-foreground/70 hover:text-primary transition-colors"
@@ -69,6 +66,7 @@ export default function RootLayout({
                 </div>
               </div>
             </footer>
+            <CookieConsent />
           </div>
         </ThemeProvider>
       </body>

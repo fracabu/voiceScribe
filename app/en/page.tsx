@@ -64,6 +64,11 @@ export default function Home() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const formRef = useRef<HTMLDivElement>(null);
+    const fiverrSectionRef = useRef<HTMLDivElement>(null);
+
+    const scrollToFiverr = () => {
+        fiverrSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -133,7 +138,7 @@ export default function Home() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <Button size="lg" className="text-lg px-8">Get Started</Button>
+                        <Button size="lg" className="text-lg px-8" onClick={scrollToFiverr}>Get Started</Button>
                     </motion.div>
                 </motion.div>
             </motion.section>
@@ -277,78 +282,8 @@ export default function Home() {
                     >
                         {[
                             {
-                                icon: <FileAudio className="h-10 w-10 text-primary" />,
-                                title: "1. Choose Our Service",
-                                description: "Visit our Fiverr page and select the transcription service that best fits your needs."
-                            },
-                            {
-                                icon: <Brain className="h-10 w-10 text-primary" />,
-                                title: "2. Share Your Audio",
-                                description: "Share your Google Drive link containing the audio file you need transcribed."
-                            },
-                            {
-                                icon: <UserCheck className="h-10 w-10 text-primary" />,
-                                title: "3. Receive Your Transcription",
-                                description: "Get your accurate transcription link fast and securely."
-                            }
-                        ].map((step, index) => (
-                            <motion.div
-                                key={index}
-                                variants={fadeInScale}
-                                whileHover={{ scale: 1.05 }}
-                                className="transform transition-all duration-300"
-                            >
-                                <Card className="bg-card/50 hover:bg-card/70 transition-colors">
-                                    <CardHeader className="space-y-4">
-                                        <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto">
-                                            {step.icon}
-                                        </div>
-                                        <div className="space-y-2 text-center">
-                                            <CardTitle className="text-xl">{step.title}</CardTitle>
-                                            <p className="text-muted-foreground">
-                                                {step.description}
-                                            </p>
-                                        </div>
-                                    </CardHeader>
-                                </Card>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                </div>
-            </motion.section>
-
-            {/* Fiverr Packages Section */}
-            <motion.section
-                className="min-h-screen flex items-center justify-center bg-muted/30"
-                initial="initial"
-                whileInView="animate"
-                viewport={{ once: true }}
-                variants={staggerContainer}
-            >
-                <div className="container mx-auto px-4 py-16">
-                    <motion.div
-                        className="text-center mb-12"
-                        variants={fadeInUp}
-                    >
-                        <Image
-                            src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg"
-                            alt="Fiverr Logo"
-                            width={100}
-                            height={100}
-                            className="h-12 mx-auto mb-6"
-                        />
-                        <h2 className="text-3xl font-bold">Choose Your Service</h2>
-                    </motion.div>
-
-                    <motion.div
-                        className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
-                        variants={staggerContainer}
-                    >
-                        {[
-                            {
                                 title: "Basic",
-                                price: "10,05 €",
-                                description: "AUDIO TO TEXT CONVERSION (BASIC)",
+                                price: "10.05 €",
                                 features: [
                                     "Audio up to 10 minutes to text",
                                     "Multilingual",
@@ -361,8 +296,7 @@ export default function Home() {
                             },
                             {
                                 title: "Standard",
-                                price: "25,12 €",
-                                description: "AUDIO TO TEXT CONVERSION (STANDARD)",
+                                price: "25.12 €",
                                 features: [
                                     "Audio up to 30 minutes to text",
                                     "Multilingual",
@@ -375,8 +309,7 @@ export default function Home() {
                             },
                             {
                                 title: "Premium",
-                                price: "45,21 €",
-                                description: "AUDIO TO TEXT CONVERSION (PREMIUM)",
+                                price: "45.21 €",
                                 features: [
                                     "Audio up to 60 minutes to text",
                                     "Multilingual",
@@ -391,6 +324,117 @@ export default function Home() {
                             <motion.div
                                 key={index}
                                 variants={fadeInScale}
+                                whileHover={{ scale: 1.05 }}
+                                className="transform transition-all duration-300"
+                            >
+                                <Card className="bg-card h-full flex flex-col">
+                                    <CardHeader className="text-center flex-1">
+                                        <CardTitle className="text-2xl mb-2">{pkg.title}</CardTitle>
+                                        <div className="text-3xl font-bold text-primary mb-4">{pkg.price}</div>
+                                        <ul className="text-sm space-y-2 mb-6">
+                                            {pkg.features.map((feature, i) => (
+                                                <li key={i} className="text-muted-foreground">{feature}</li>
+                                            ))}
+                                        </ul>
+                                        <motion.div
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                        >
+                                            <Button className="w-full bg-[#1dbf73] hover:bg-[#19a463] text-white" asChild>
+                                                <a href={pkg.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
+                                                    <span>Order Now on</span>
+                                                    <Image
+                                                        src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg"
+                                                        alt="Fiverr"
+                                                        width={50}
+                                                        height={50}
+                                                        className="h-5 invert"
+                                                    />
+                                                </a>
+                                            </Button>
+                                        </motion.div>
+                                    </CardHeader>
+                                </Card>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </motion.section>
+
+            {/* Fiverr Packages Section */}
+            <motion.section
+                ref={fiverrSectionRef}
+                className="min-h-screen flex items-center justify-center bg-muted/30"
+                initial="initial"
+                whileInView="animate"
+                viewport={{ once: true }}
+                variants={staggerContainer}
+            >
+                <div className="container mx-auto px-4 py-16">
+                    <motion.div
+                        className="text-center mb-12"
+                        variants={fadeInUp}
+                    >
+                        <Image
+                            src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg"
+                            alt="Fiverr Logo"
+                            width={300}
+                            height={300}
+                            className="h-12 mx-auto mb-6"
+                        />
+                        <h2 className="text-3xl font-bold">Choose Your Service</h2>
+                    </motion.div>
+
+                    <motion.div
+                        className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
+                        variants={staggerContainer}
+                    >
+                        {[
+                            {
+                                title: "Basic",
+                                price: "10,05 €",
+                                description: "AUDIO TO TEXT CONVERSION",
+                                features: [
+                                    "Audio up to 10 minutes to text",
+                                    "Multilingual",
+                                    "Speaker ID",
+                                    "Timestamp",
+                                    "Proofreading",
+                                    "Unlimited revisions"
+                                ],
+                                link: "https://it.fiverr.com/s/R7xGLl8"
+                            },
+                            {
+                                title: "Standard",
+                                price: "25,12 €",
+                                description: "AUDIO TO TEXT CONVERSION",
+                                features: [
+                                    "Audio up to 30 minutes to text",
+                                    "Multilingual",
+                                    "Speaker ID",
+                                    "Timestamp",
+                                    "Proofreading",
+                                    "Unlimited revisions"
+                                ],
+                                link: "https://it.fiverr.com/s/R7xGLl8"
+                            },
+                            {
+                                title: "Premium",
+                                price: "45,21 €",
+                                description: "AUDIO TO TEXT CONVERSION",
+                                features: [
+                                    "Audio up to 60 minutes to text",
+                                    "Multilingual",
+                                    "Speaker ID",
+                                    "Timestamp",
+                                    "Proofreading",
+                                    "Unlimited revisions"
+                                ],
+                                link: "https://it.fiverr.com/s/R7xGLl8"
+                            }
+                        ].map((pkg, index) => (
+                            <motion.div
+                                key={index} variants={fadeInScale}
                                 whileHover={{ scale: 1.05 }}
                                 className="transform transition-all duration-300"
                             >
@@ -414,8 +458,8 @@ export default function Home() {
                                                     <Image
                                                         src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg"
                                                         alt="Fiverr"
-                                                        width={100}
-                                                        height={100}
+                                                        width={50}
+                                                        height={50}
                                                         className="h-5 invert"
                                                     />
                                                 </a>

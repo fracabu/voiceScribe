@@ -1,57 +1,97 @@
-// components/cookie-consent.tsx
-
 "use client"
 
 import { useState, useEffect } from 'react';
-import { Button } from './ui/button';
+import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 import Link from 'next/link';
 
 export function CookieConsent() {
-  const [showConsent, setShowConsent] = useState(false);
+  const [showConsent, setShowConsent] = useState(true); // Cambiato il valore iniziale a true
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem('cookieConsent');
-    if (!consent) {
-      setShowConsent(true);
+    console.log('CookieConsent - Initial mount');
+    setMounted(true);
+    try {
+      console.log('CookieConsent - Checking localStorage');
+      const consent = localStorage.getItem('cookieConsent');
+      console.log('CookieConsent - Current consent value:', consent);
+      
+      if (consent) {
+        // Solo se troviamo un consenso esistente, nascondiamo il banner
+        console.log('CookieConsent - Existing consent found, hiding banner');
+        setShowConsent(false);
+      }
+    } catch (error) {
+      console.error('CookieConsent - Error accessing localStorage:', error);
     }
   }, []);
 
-  const acceptCookies = () => {
-    localStorage.setItem('cookieConsent', 'accepted');
-    setShowConsent(false);
-    // Puoi aggiungere qui il codice per attivare i cookie di analisi o marketing
-  };
+  // Aspettiamo il montaggio del componente
+  if (!mounted) {
+    return null;
+  }
 
-  const declineCookies = () => {
-    localStorage.setItem('cookieConsent', 'declined');
-    setShowConsent(false);
-    // Puoi aggiungere qui il codice per disattivare i cookie di analisi o marketing
-  };
-
-  if (!showConsent) return null;
+  // Se non dobbiamo mostrare il consenso, ritorniamo null
+  if (!showConsent) {
+    return null;
+  }
 
   return (
-    <div 
-      className="fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4 shadow-lg animate-in slide-in-from-bottom duration-500"
-      role="dialog" 
-      aria-labelledby="cookie-consent-title" 
+    <div
+      className="fixed bottom-0 left-0 right-0 bg-background border-t z-[9999]"
+      role="dialog"
+      aria-labelledby="cookie-consent-title"
       aria-modal="true"
+      style={{ position: 'fixed', bottom: 0, left: 0, right: 0 }}
     >
-      <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between">
-        <p id="cookie-consent-title" className="text-sm text-gray-300 mb-2 sm:mb-0">
-          Utilizziamo <Link href="/docs/cookie-policy.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline">cookie</Link> per migliorare la tua esperienza. Per maggiori informazioni, leggi la nostra <Link href="/docs/cookie-policy.pdf" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline">Cookie Policy</Link>.
-        </p>
-        <div className="flex items-center gap-4">
-          <Button onClick={acceptCookies} size="sm">
-            Accetta
-          </Button>
-          <Button onClick={declineCookies} variant="ghost" size="sm">
-            Rifiuta
-          </Button>
-          <Button variant="ghost" size="sm" onClick={() => setShowConsent(false)} aria-label="Chiudi">
-            <X className="h-4 w-4" />
-          </Button>
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p id="cookie-consent-title" className="text-sm text-muted-foreground">
+            Utilizziamo i cookie per migliorare la tua esperienza. Leggi la nostra{' '}
+            <Link href="/privacy-policy" className="text-primary hover:text-primary/80 underline">
+              Privacy Policy
+            </Link>{' '}
+            e la{' '}
+            <Link href="/cookie-policy" className="text-primary hover:text-primary/80 underline">
+              Cookie Policy
+            </Link>
+            .
+          </p>
+          <div className="flex items-center gap-2">
+            <Button 
+              onClick={() => {
+                console.log('CookieConsent - Accepting cookies');
+                localStorage.setItem('cookieConsent', 'accepted');
+                setShowConsent(false);
+              }} 
+              size="sm"
+            >
+              Accetta
+            </Button>
+            <Button 
+              onClick={() => {
+                console.log('CookieConsent - Declining cookies');
+                localStorage.setItem('cookieConsent', 'declined');
+                setShowConsent(false);
+              }} 
+              variant="outline" 
+              size="sm"
+            >
+              Rifiuta
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={() => {
+                console.log('CookieConsent - Closing banner');
+                setShowConsent(false);
+              }} 
+              aria-label="Chiudi"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>

@@ -64,6 +64,11 @@ export default function Home() {
     const [isSubmitting, setIsSubmitting] = useState(false);
 
     const formRef = useRef<HTMLDivElement>(null);
+    const fiverrSectionRef = useRef<HTMLDivElement>(null);
+
+    const scrollToFiverr = () => {
+        fiverrSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -133,11 +138,10 @@ export default function Home() {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        <Button size="lg" className="text-lg px-8">Inizia Ora</Button>
+                        <Button size="lg" className="text-lg px-8" onClick={scrollToFiverr}>Inizia Ora</Button>
                     </motion.div>
                 </motion.div>
             </motion.section>
-
             {/* Sezione Caratteristiche Avanzate */}
             <motion.section
                 className="min-h-screen flex items-center justify-center bg-muted/30"
@@ -319,6 +323,7 @@ export default function Home() {
 
             {/* Pacchetti Fiverr */}
             <motion.section
+                ref={fiverrSectionRef}
                 className="min-h-screen flex items-center justify-center bg-muted/30"
                 initial="initial"
                 whileInView="animate"
@@ -335,8 +340,7 @@ export default function Home() {
                             alt="Logo Fiverr"
                             width={100}
                             height={100}
-                            className="h-12 mx-auto mb-6"
-                        />
+                            className="h-12 mx-auto mb-6" />
                         <h2 className="text-3xl font-bold">Scegli il Tuo Servizio</h2>
                     </motion.div>
 
@@ -348,7 +352,6 @@ export default function Home() {
                             {
                                 title: "Base",
                                 price: "10,05 €",
-                                description: "CONVERSIONE DA AUDIO A TESTO (BASE)",
                                 features: [
                                     "Audio fino a 10 minuti in testo",
                                     "Multilingua",
@@ -362,7 +365,6 @@ export default function Home() {
                             {
                                 title: "Standard",
                                 price: "25,12 €",
-                                description: "CONVERSIONE DA AUDIO A TESTO (STANDARD)",
                                 features: [
                                     "Audio fino a 30 minuti in testo",
                                     "Multilingua",
@@ -376,7 +378,6 @@ export default function Home() {
                             {
                                 title: "Premium",
                                 price: "45,21 €",
-                                description: "CONVERSIONE DA AUDIO A TESTO (PREMIUM)",
                                 features: [
                                     "Audio fino a 60 minuti in testo",
                                     "Multilingua",
@@ -398,7 +399,6 @@ export default function Home() {
                                     <CardHeader className="text-center flex-1">
                                         <CardTitle className="text-2xl mb-2">{pkg.title}</CardTitle>
                                         <div className="text-3xl font-bold text-primary mb-4">{pkg.price}</div>
-                                        <p className="font-medium text-sm mb-6">{pkg.description}</p>
                                         <ul className="text-sm space-y-2 mb-6">
                                             {pkg.features.map((feature, i) => (
                                                 <li key={i} className="text-muted-foreground">{feature}</li>
@@ -509,7 +509,6 @@ export default function Home() {
                     </motion.div>
                 </div>
             </motion.section>
-
         </div>
     );
 }

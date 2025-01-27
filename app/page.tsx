@@ -30,8 +30,8 @@ const staggerContainer = {
 
 const fadeInScale = {
   initial: { opacity: 0, scale: 0.9 },
-  animate: { 
-    opacity: 1, 
+  animate: {
+    opacity: 1,
     scale: 1,
     transition: {
       duration: 0.5,
@@ -42,8 +42,8 @@ const fadeInScale = {
 
 const slideIn = {
   initial: { x: -100, opacity: 0 },
-  animate: { 
-    x: 0, 
+  animate: {
+    x: 0,
     opacity: 1,
     transition: {
       duration: 0.7,
@@ -64,6 +64,11 @@ export default function Home() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formRef = useRef<HTMLDivElement>(null);
+  const fiverrSectionRef = useRef<HTMLDivElement>(null);
+
+  const scrollToFiverr = () => {
+    fiverrSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,7 +85,7 @@ export default function Home() {
         ...formData,
         createdAt: new Date(),
       });
-      
+
       setFormSuccess(true);
       setFormData({ firstName: '', lastName: '', email: '', message: '' });
     } catch (error) {
@@ -93,9 +98,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-background/95 transition-colors duration-300">
-     
+
       {/* Hero Section */}
-      <motion.section 
+      <motion.section
         className="min-h-screen flex items-center justify-center relative overflow-hidden"
         initial="initial"
         whileInView="animate"
@@ -109,11 +114,11 @@ export default function Home() {
             className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center"
           />
         </div>
-        <motion.div 
+        <motion.div
           className="container mx-auto px-4 text-center relative z-10"
           variants={fadeInUp}
         >
-          <motion.h1 
+          <motion.h1
             className="text-5xl md:text-6xl font-bold tracking-tight mb-6"
             variants={slideIn}
           >
@@ -121,7 +126,7 @@ export default function Home() {
             <br />
             <span className="text-primary">Into Perfect Text</span>
           </motion.h1>
-          <motion.p 
+          <motion.p
             className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8"
             variants={fadeInUp}
           >
@@ -133,13 +138,13 @@ export default function Home() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <Button size="lg" className="text-lg px-8">Get Started</Button>
+            <Button size="lg" className="text-lg px-8" onClick={scrollToFiverr}>Get Started</Button>
           </motion.div>
         </motion.div>
       </motion.section>
 
       {/* Advanced Features Section */}
-      <motion.section 
+      <motion.section
         className="min-h-screen flex items-center justify-center bg-muted/30"
         initial="initial"
         whileInView="animate"
@@ -147,13 +152,13 @@ export default function Home() {
         variants={staggerContainer}
       >
         <div className="container mx-auto px-4 py-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-bold text-center mb-12"
             variants={fadeInUp}
           >
             Advanced Features
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
             variants={staggerContainer}
           >
@@ -196,7 +201,7 @@ export default function Home() {
       </motion.section>
 
       {/* Perfect For Section */}
-      <motion.section 
+      <motion.section
         className="min-h-screen flex items-center justify-center bg-background/95"
         initial="initial"
         whileInView="animate"
@@ -204,13 +209,13 @@ export default function Home() {
         variants={staggerContainer}
       >
         <div className="container mx-auto px-4 py-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-bold text-center mb-12"
             variants={fadeInUp}
           >
             Perfect For
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
             variants={staggerContainer}
           >
@@ -257,7 +262,7 @@ export default function Home() {
       </motion.section>
 
       {/* How It Works Section */}
-      <motion.section 
+      <motion.section
         className="min-h-screen flex items-center justify-center"
         initial="initial"
         whileInView="animate"
@@ -265,13 +270,13 @@ export default function Home() {
         variants={staggerContainer}
       >
         <div className="container mx-auto px-4 py-16">
-          <motion.h2 
+          <motion.h2
             className="text-3xl font-bold text-center mb-12"
             variants={fadeInUp}
           >
             How It Works
           </motion.h2>
-          <motion.div 
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
             variants={staggerContainer}
           >
@@ -318,7 +323,8 @@ export default function Home() {
       </motion.section>
 
       {/* Fiverr Packages Section */}
-      <motion.section 
+      <motion.section
+        ref={fiverrSectionRef}
         className="min-h-screen flex items-center justify-center bg-muted/30"
         initial="initial"
         whileInView="animate"
@@ -326,29 +332,29 @@ export default function Home() {
         variants={staggerContainer}
       >
         <div className="container mx-auto px-4 py-16">
-          <motion.div 
+          <motion.div
             className="text-center mb-12"
             variants={fadeInUp}
           >
-            <Image 
-              src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg" 
-              alt="Fiverr Logo" 
-              width={300} 
-              height={300} 
-              className="h-12 mx-auto mb-6 "
+            
+            <Image
+              src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg"
+              alt="Logo Fiverr"
+              width={100}
+              height={48}
+              className="h-12 w-auto mx-auto mb-6"
             />
             <h2 className="text-3xl font-bold">Choose Your Service</h2>
           </motion.div>
-          
-          <motion.div 
+
+          <motion.div
             className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto"
             variants={staggerContainer}
           >
             {[
               {
                 title: "Basic",
-                price: "10,05 €",
-                description: "AUDIO TO TEXT CONVERSION",
+                price: "10.05 €",
                 features: [
                   "Audio up to 10 minutes to text",
                   "Multilingual",
@@ -361,8 +367,7 @@ export default function Home() {
               },
               {
                 title: "Standard",
-                price: "25,12 €",
-                description: "AUDIO TO TEXT CONVERSION",
+                price: "25.12 €",
                 features: [
                   "Audio up to 30 minutes to text",
                   "Multilingual",
@@ -375,8 +380,7 @@ export default function Home() {
               },
               {
                 title: "Premium",
-                price: "45,21 €",
-                description: "AUDIO TO TEXT CONVERSION",
+                price: "45.21 €",
                 features: [
                   "Audio up to 60 minutes to text",
                   "Multilingual",
@@ -398,7 +402,6 @@ export default function Home() {
                   <CardHeader className="text-center flex-1">
                     <CardTitle className="text-2xl mb-2">{pkg.title}</CardTitle>
                     <div className="text-3xl font-bold text-primary mb-4">{pkg.price}</div>
-                    <p className="font-medium text-sm mb-6">{pkg.description}</p>
                     <ul className="text-sm space-y-2 mb-6">
                       {pkg.features.map((feature, i) => (
                         <li key={i} className="text-muted-foreground">{feature}</li>
@@ -411,12 +414,12 @@ export default function Home() {
                       <Button className="w-full bg-[#1dbf73] hover:bg-[#19a463] text-white" asChild>
                         <a href={pkg.link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
                           <span>Order Now on</span>
-                          <Image 
-                            src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg" 
-                            alt="Fiverr" 
-                            width={50} 
-                            height={50} 
-                            className="h-5 invert"
+                          <Image
+                            src="https://upload.wikimedia.org/wikipedia/commons/1/18/Fiverr_Logo_09.2020.svg"
+                            alt="Fiverr"
+                            width={50}
+                            height={20}
+                            className="h-5 w-auto invert"
                           />
                         </a>
                       </Button>
@@ -430,7 +433,7 @@ export default function Home() {
       </motion.section>
 
       {/* Contact Form */}
-      <motion.section 
+      <motion.section
         ref={formRef}
         className="min-h-screen flex items-center justify-center"
         initial="initial"
@@ -439,7 +442,7 @@ export default function Home() {
         variants={fadeInUp}
       >
         <div className="container mx-auto px-4 py-16">
-          <motion.div 
+          <motion.div
             className="max-w-md mx-auto bg-card rounded-xl shadow-lg p-6"
             variants={fadeInScale}
           >
@@ -509,7 +512,7 @@ export default function Home() {
           </motion.div>
         </div>
       </motion.section>
-   
+
     </div>
   );
 }
