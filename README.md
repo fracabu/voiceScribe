@@ -71,7 +71,7 @@ npm run dev
 
 ## 📞 Contatti
 
-Per preventivi personalizzati o informazioni aggiuntive, utilizza il modulo di contatto sul nostro sito o visita la nostra [pagina Fiverr](https://it.fiverr.com/s/R7xGLl8).
+Per preventivi personalizzati o informazioni aggiuntive, utilizza il modulo di contatto sul nostro sito o visita la nostra [pagina Fiverr](https://it.fiverr.com/s/ak95b08).
 
 ## 📄 Licenza
 
