@@ -1,78 +1,87 @@
-# VoiceScribe
+<h1 align="center">VoiceScribe</h1>
+<h3 align="center">AI Audio Transcription Service</h3>
 
-VoiceScribe è una landing page professionale creata per promuovere il mio servizio di trascrizione audio su Fiverr. Questo servizio è basato sulla mia applicazione [Transcription App](https://github.com/fracabu/transcription-app), una soluzione completa per la conversione audio-testo che utilizza Azure Cognitive Services.
+<p align="center">
+  <em>Professional landing page for AI-powered transcription on Fiverr</em>
+</p>
 
-## 🔗 Collegamento con Transcription App
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/AI-412991?style=flat-square" alt="AI" />
+  <img src="https://img.shields.io/badge/Fiverr-1DBF73?style=flat-square&logo=fiverr&logoColor=white" alt="Fiverr" />
+</p>
 
-Questo sito web è l'interfaccia commerciale del mio servizio di trascrizione professionale, alimentato dalla tecnologia sviluppata in [Transcription App](https://github.com/fracabu/transcription-app). Mentre Transcription App fornisce l'infrastruttura tecnica e le funzionalità avanzate di trascrizione, VoiceScribe offre un punto di accesso semplificato per i clienti attraverso la piattaforma Fiverr.
+<p align="center">
+  :gb: <a href="#english">English</a> | :it: <a href="#italiano">Italiano</a>
+</p>
 
-## 🌟 Caratteristiche del Servizio
+---
 
-- **Multilingua**: Supporto per oltre 30 lingue con rilevamento automatico
-- **Alta Accuratezza**: Tecnologia AI che garantisce accuratezza superiore al 99%
-- **Identificazione Speaker**: Distinzione automatica tra diversi parlanti
-- **Timestamp**: Riferimenti temporali precisi nel testo
-- **Formati Multipli**: Esportazione in vari formati (TXT, SRT, ecc.)
-- **Revisione Professionale**: Correzione manuale e revisioni illimitate
+<a name="english"></a>
+## :gb: English
 
-## 💼 Casi d'Uso
+### Overview
 
-- **Studenti Universitari**: Trascrizione di lezioni e seminari
-- **Studi Legali**: Trascrizione di udienze e deposizioni
-- **Conferenze Scientifiche**: Documentazione accurata di presentazioni
-- **Interviste**: Trascrizione di interviste per ricerca o giornalismo
-- **Meeting Aziendali**: Documentazione di riunioni importanti
+VoiceScribe is a professional landing page promoting an AI-powered audio transcription service available on Fiverr. Showcase your transcription services with a modern design.
 
-## 💎 Pacchetti Disponibili su Fiverr
+### Features
 
-### Base - 10,05 €
-- Audio fino a 10 minuti
-- Tutte le funzionalità standard
-- Revisioni illimitate
+- **Service Showcase** - Highlight transcription capabilities
+- **Pricing Display** - Show service tiers
+- **Fiverr Integration** - Direct link to gig
+- **Testimonials** - Client reviews section
+- **Modern Design** - Professional aesthetics
 
-### Standard - 25,12 €
-- Audio fino a 30 minuti
-- Tutte le funzionalità standard
-- Revisioni illimitate
-
-### Premium - 45,21 €
-- Audio fino a 60 minuti
-- Tutte le funzionalità standard
-- Revisioni illimitate
-
-## 🛠️ Stack Tecnologico della Landing Page
-
-- Next.js 13
-- TypeScript
-- Tailwind CSS
-- Shadcn/ui
-- Framer Motion
-- Firebase
-
-## 🚀 Installazione
+### Quick Start
 
 ```bash
-# Clona il repository
-git clone https://github.com/YourUsername/voicescribe.git
-
-# Installa le dipendenze
+git clone https://github.com/fracabu/voiceScribe.git
+cd voiceScribe
 npm install
-
-# Avvia il server di sviluppo
 npm run dev
 ```
 
-## 🔒 Privacy e Sicurezza
+---
 
-- Gestione sicura dei file audio
-- Conformità GDPR
-- Privacy Policy completa
-- Cookie Policy trasparente
+<a name="italiano"></a>
+## :it: Italiano
 
-## 📞 Contatti
+### Panoramica
 
-Per preventivi personalizzati o informazioni aggiuntive, utilizza il modulo di contatto sul nostro sito o visita la nostra [pagina Fiverr](https://it.fiverr.com/s/ak95b08).
+VoiceScribe e una landing page professionale per promuovere un servizio di trascrizione audio AI disponibile su Fiverr. Mostra i tuoi servizi di trascrizione con un design moderno.
 
-## 📄 Licenza
+### Funzionalita
 
-© 2024 VoiceScribe. Tutti i diritti riservati.
+- **Vetrina Servizi** - Evidenzia capacita trascrizione
+- **Display Prezzi** - Mostra livelli servizio
+- **Integrazione Fiverr** - Link diretto al gig
+- **Testimonianze** - Sezione recensioni clienti
+- **Design Moderno** - Estetica professionale
+
+### Avvio Rapido
+
+```bash
+git clone https://github.com/fracabu/voiceScribe.git
+cd voiceScribe
+npm install
+npm run dev
+```
+
+---
+
+## Tech Stack
+
+- TypeScript, React
+
+## License
+
+MIT
+
+---
+
+<p align="center">
+  <a href="https://github.com/fracabu">
+    <img src="https://img.shields.io/badge/Made_by-fracabu-8B5CF6?style=flat-square" alt="Made by fracabu" />
+  </a>
+</p>
